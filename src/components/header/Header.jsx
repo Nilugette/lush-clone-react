@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBag, faSearch, faUser, faComments} from '@fortawesome/free-solid-svg-icons'
 import logo from "../../assets/Lush-fresh-handmade-cosmetics.png"
@@ -11,8 +11,30 @@ const iconComments= <FontAwesomeIcon icon={faComments}  />
 
 
 const Header = () => {
+    const [scrolled, setScrolled] = React.useState(false);
+
+    const handleScroll=() => {
+        const offset=window.scrollY;
+        if(offset > 200 ){
+          setScrolled(true);
+        }
+        else{
+          setScrolled(false);
+        }
+      }
+    
+    useEffect(() => {
+        window.addEventListener('scroll',handleScroll)
+    })
+
+    let navbarClasses=['header'];
+
+    if(scrolled){
+        navbarClasses.push('scrolled');
+    }
+
     return (
-        <div className="header">
+        <div className={navbarClasses.join(" ")}>
             <div className="comments">
                 <a href="#">{iconComments}</a>
             </div>
