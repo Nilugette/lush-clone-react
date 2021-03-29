@@ -1,0 +1,50 @@
+@mixin anchor {
+    a {
+        color: white;
+        padding: 10px 15px;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+
+        &:hover {
+            color: rgb(121, 118, 118);
+        }
+    }
+}
+
+@mixin flexHeader($direction) {
+    display: flex;
+    flex-direction: row;
+    justify-content: $direction;
+    align-items: center;
+}
+
+
+.header{
+    @include flexHeader(space-between);
+
+    height: 50px;
+    width: 100%;
+    margin-bottom: 25px;
+	padding: 25px 0;
+	letter-spacing: 1px;
+    background-color: black;
+    font-family: Arial;
+    
+    .navbar {
+        @include flexHeader(center);
+
+        .navlink {  
+            @include anchor
+        }
+    }
+    
+    .shopping-cart {
+        @include anchor
+
+    }
+
+    .comments {
+        @include anchor
+    }
+
+}
